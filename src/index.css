@@ -1,3 +1,4 @@
+/* Body styling */
 body {
   margin: 0;
   padding: 0;
@@ -10,7 +11,7 @@ body {
   height: 100vh;
 }
 
-
+/* Container styling */
 .container {
   position: relative;
   max-width: 500px;
@@ -42,9 +43,6 @@ body {
   z-index: -1;
 }
 
-
-
-
 /* Headings */
 h1 {
   font-size: 2rem;
@@ -52,7 +50,7 @@ h1 {
   color: #f0f0f0;
 }
 
-/* Drop Area Style */
+/* Drop Area */
 .drop-area {
   border: 2px dashed #666;
   padding: 30px;
@@ -106,8 +104,6 @@ h1 {
   pointer-events: none;
 }
 
-
-
 /* Dropdowns */
 select {
   width: 100%;
@@ -125,14 +121,10 @@ select {
   z-index: 1;
 }
 
-/* Optional: Style for better dropdown indicator (requires wrapper or pseudo-element) */
-
-/* Optional: Style <option> for consistency */
 select option {
   background: rgba(20, 20, 20, 0.9); /* Dark glass-style background */
   color: #fff;
 }
-
 
 /* Convert Button */
 button {
@@ -160,4 +152,75 @@ button:hover {
 .error-message {
   margin-top: 15px;
   color: #ff4c4c;
+}
+
+.progress-container {
+  width: 100%;
+  background-color: #eee;
+  border-radius: 10px;
+  margin-top: 15px;
+  overflow: hidden;
+  height: 20px;
+  position: relative;
+}
+
+.progress-bar {
+  background-color: #00cc99;
+  height: 100%;
+  width: 0%;
+  transition: width 0.4s ease-in-out;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  /* Adjust the container for small screens */
+  .container {
+    max-width: 90%;  /* Take up most of the screen width */
+    margin: 20px auto; /* Reduce the top margin */
+    padding: 15px;  /* Less padding for smaller screens */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Reduce font size for headings */
+  }
+
+  /* Drop area adjustments */
+  .drop-area {
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  /* File input label adjustments */
+  .file-label {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  /* Dropdown adjustments */
+  select {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* Button styling adjustments */
+  button {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+
+  /* Progress bar styling adjustments */
+  .progress-container {
+    margin-top: 10px;
+    height: 15px;
+  }
+
+  .progress-bar {
+    height: 100%;
+    transition: width 0.3s ease-in-out;
+  }
+
+  /* Status and Error messages font size adjustments */
+  .status-message, .error-message {
+    font-size: 14px;
+  }
 }
