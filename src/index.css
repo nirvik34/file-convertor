@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0d0d0d;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url('https://i.pinimg.com/736x/7b/ba/94/7bba9438553554af7ffdd005974016bc.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+
+.container {
+  position: relative;
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 10px;
+  background: rgba(20, 20, 20, 0.8); /* Slight transparency for glass effect */
+  text-align: center;
+  z-index: 1;
+  overflow: hidden;
+  backdrop-filter: blur(10px); /* Glass-like blur effect */
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px;
+  padding: 2px; /* thickness of the glowing border */
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+
+
+/* Headings */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #f0f0f0;
+}
+
+/* Drop Area Style */
+.drop-area {
+  border: 2px dashed #666;
+  padding: 30px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  background: #1a1a1a;
+  transition: border 0.3s, background-color 0.3s;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.drop-area.dragging {
+  background-color: #222;
+}
+
+/* File Input */
+.file-input-container {
+  margin-bottom: 20px;
+}
+
+.file-label {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  background: rgba(188, 188, 188, 0.148); /* Slight transparency for the glass effect */
+  color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
+  backdrop-filter: blur(100px); 
+}
+
+.file-label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2px;
+  border-radius: 10px;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+
+/* Dropdowns */
+select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  background: rgba(101, 101, 101, 0.4); /* Glass-like transparent background */
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  outline: none;
+  backdrop-filter: blur(8px); /* Glass blur effect */
+  -webkit-backdrop-filter: blur(8px);
+  appearance: none; /* Removes default arrow for custom styling */
+  position: relative;
+  z-index: 1;
+}
+
+/* Optional: Style for better dropdown indicator (requires wrapper or pseudo-element) */
+
+/* Optional: Style <option> for consistency */
+select option {
+  background: rgba(20, 20, 20, 0.9); /* Dark glass-style background */
+  color: #fff;
+}
+
+
+/* Convert Button */
+button {
+  margin-top: 10px;
+  padding: 12px 30px;
+  background-color: transparent;
+  color: #fff;
+  background: #65656562;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: rgba(255, 0, 255, 0.05);
+}
+
+/* Status & Error Messages */
+.status-message {
+  margin-top: 15px;
+  color: #00ffcc;
+}
+
+.error-message {
+  margin-top: 15px;
+  color: #ff4c4c;
+}
