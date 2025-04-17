@@ -7,6 +7,7 @@ function App() {
   const [outputType, setOutputType] = useState("");
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [availableOutputTypes, setAvailableOutputTypes] = useState([]);
 
   const conversionMap = {
@@ -32,6 +33,7 @@ function App() {
       setFile(uploadedFile);
       setStatus("");
       setError("");
+      setUploadProgress(0);
       const ext = getExtension(uploadedFile.name);
       if (conversionMap[ext]) {
         setAvailableOutputTypes(conversionMap[ext]);
@@ -54,12 +56,20 @@ function App() {
     formData.append("file", file);
     formData.append("output_type", outputType.replace(".", ""));
 
-
     try {
-      const response = await axios.post("https://file-convertor-2q9k.onrender.com/convert", formData, {
-        responseType: "blob",
-      });
-      
+      const response = await axios.post(
+        "https://file-convertor-2q9k.onrender.com/convert",
+        formData,
+        {
+          responseType: "blob",
+          onUploadProgress: (progressEvent) => {
+            const percentCompleted = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total
+            );
+            setUploadProgress(percentCompleted);
+          }
+        }
+      );
 
       const link = document.createElement("a");
       link.href = URL.createObjectURL(response.data);
@@ -68,7 +78,8 @@ function App() {
 
       setStatus("File converted successfully!");
       setError("");
-    }  catch (err) {
+      setUploadProgress(0);
+    } catch (err) {
       console.error("Error:", err);
       if (err.response && err.response.data) {
         const reader = new FileReader();
@@ -78,8 +89,8 @@ function App() {
         reader.readAsText(err.response.data);
       }
       setError("Failed to convert file.");
+      setUploadProgress(0);
     }
-    
   };
 
   return (
@@ -132,6 +143,14 @@ function App() {
       )}
 
       <button onClick={handleConvert} disabled={!file || !outputType}>Convert</button>
+
+      {/* Progress Bar */}
+      {uploadProgress > 0 && (
+        <div className="progress-container">
+          <div className="progress-bar" style={{ width: `${uploadProgress}%` }}></div>
+          <p>{uploadProgress}%</p>
+        </div>
+      )}
 
       {status && <div className="status-message">{status}</div>}
       {error && <div className="error-message">{error}</div>}
