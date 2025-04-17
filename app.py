@@ -1,5 +1,6 @@
 import json
 from io import BytesIO
+from flask import Flask
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from PyPDF2 import PdfReader
